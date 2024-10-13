@@ -1,300 +1,596 @@
-# Proyecto de evaluación
+# Improve business strategy and increase profitability
 
 ---
 
-![Logo de la Institución](http://www.imfe.mx/inicio/wp-content/uploads/2020/05/logo_imfe.jpg)
+![Logo](./img/intro.jpg)
 
 ---
 
-## Autor: Juan Carlos González Ibarra
-## Correo Institucional: juan.gonzalez.dti@imfe.mx
+## Author: Juan Carlos González
+## E-mail: jcgi.laboral@gmail.com
 
 ---
 
-## Fecha: 15 de mayo, 2023
+## Date: May, 2024
 
 ---
 
-## Contenido
+## Content
 
-1. Introducción
-2. Objetivo
-3. Descripción de los datos
-4. Análisis exploratorio
-5. Desarrollo
-6. Resultados
-7. Conclusión
-8. Bibliografía
+1. Objective
+2. Description of the data
+3. Exploratory analysis
+4. Development
+5. Results
+6. Conclusion
+7. References
 
 ---
 
+# 1. Project Objective
+The objective is to analyze the data and obtain valuable information that allows the company to improve its sales strategy and increase its profitability.
 
-# 1. Introducción
+# 2. Description of the data
 
-La tecnología está presente cada vez más en nuestras vidas, podemos notarlo de tal forma que nuestras actividades diarias están vinculadas a compartir información por medios digitales, sin duda esto hace que la información recolectada por estos medios digitales sea visualizada como una herramienta en la toma de decisiones y/o en la solución de problemas. Esta información para poder ser utilizada con estos propósitos previamente debe haber pasado por un proceso de análisis; este proceso de análisis ya tiene una base científica y aplicativa llamada ciencia de datos. La ciencia de datos conlleva una serie de etapas para el análisis de la información como: el entendimiento de los datos, la extracción de sus propiedades, el modelado y análisis del problema, la presentación de resultados y el desarrollo de software para explotar el conocimiento extraído. La **Ciencia de Datos** proporciona las herramientas y en ayuda del **Big Data** provee nuevas oportunidades tecnológicas para análisis masivos de información, por lo que las Tecnologías Big Data ayudan a mejorar la eficiencia, calidad y los productos y servicios personalizados ofrecidos por las organizaciones y a integrar datos estructurados y no estructurados con respuestas en tiempo real, abriendo nuevos caminos a la innovación y desarrollo.
+This project has an Instacart Market Basket Analysis dataset, which is contained in several CSV files. 
 
-Por lo que el **Big Data** se refiere al manejo y análisis de enormes volúmenes de datos que no pueden ser procesados de manera efectiva con las técnicas tradicionales debido a su volumen, velocidad y variedad. Los datos pueden provenir de varias fuentes, como transacciones comerciales, sensores de IoT, redes sociales, datos de salud, etc. Las técnicas de Big Data permiten descubrir patrones ocultos, correlaciones y otras ideas útiles que pueden informar la toma de decisiones empresariales y estratégicas.
+<small> The information contained in the CSV files is as follows:
 
-Por lo que para realizar este análisis masivo de datos se debe identificar patrones que ayuden a la toma de decisiones tenemos que llevar acabo el **Análisis Exploratorio de Datos (AED)**.
+• **orders.csv** : Contains information on orders placed by users.
+Each row represents an order and contains the following information:
+- **order_id** : Order ID.
+- **user_id** : ID of the user who placed the order.
+- **order_number**: Order number for each user (1 = first order, 2 =
+second order, etc.).
+- **order_dow** : Day of the week the order was placed.
+- **order_hour_of_day** : Time of day the order was placed.
+- **days_since_prior_order** : Days elapsed since the last order of the
+user.
 
-## 1.1 Análisis Exploratorio de Datos
-Se utiliza para analizar e investigar conjuntos de datos y resumir sus características principales, a menudo empleando métodos de visualización de datos que ayuda a entender la estructura de estos. Es un paso crucial antes de realizar modelos más complejos ya que ayuda a gestionar las fuentes de datos, descubrir patrones, detectar anomalías, probar una hipótesis, identificar relaciones y tendencias, etc.
+• **order_products__prior.csv**: Contains information on products purchased from
+every order. Each row represents a product in an order and contains the
+following information:
+- **order_id** : Order ID.
+- **product_id** : ID of the purchased product.
+- **add_to_cart_order** : Order in which the product was added to the cart in the
+time of order.
+- **reordered** : Indicates whether the product has been ordered by the user
+formerly.
 
-<img src="https://datos.gob.es/sites/default/files/u322/grafico-guia_0.jpg" width="600" height="400">
+• **products.csv** : Contains information about the products sold in the store. Every
+row represents a product and contains the following information:
+- **product_id** : Product ID.
+- **product_name** : Name of the product.
+- **aisle_id**: ID of the aisle where the product is located.
+- **department_id** : ID of the department to which the product belongs.
 
-El **AED** es un paso esencial en cualquier flujo de trabajo de **análisis de datos**, implica el uso de algoritmos de muestreo y agregación para reducir la escala de los datos a un tamaño manejable, y luego explorar estos datos resumidos para obtener insights. 
- 
-Source: https://www.ibm.com/mx-es/topics/exploratory-data-analysis
+• **aisles.csv** : Contains information from the store aisles. Each row represents
+a hallway and contains the following information:
+- **aisle_id** : Hallway ID.
+- **aisle** : Name of the corridor.
 
-
-## 1.2 Metodología en el Análisis de Datos
-  
-Para establecer una metodología en el análisis de datos, debemos definir que el análisis de datos es el proceso de convertir datos sin procesar en información práctica e incluye una serie de herramientas, tecnologías y procesos para encontrar tendencias y resolver problemas mediante datos.
-
-Source: https://aws.amazon.com/es/what-is/data-analytics/
-
-<img src="https://actions.es/wp-content/uploads/2020/08/datos1-1.jpg" width="600" height="400">
-
-
-# 2. Objetivo del Proyecto
-El objetivo es analizar los datos y obtener información valiosa que permita a la compañía mejorar su estrategia de ventas y aumentar su rentabilidad.
-
-
-# 3. Descripción de los datos
-
-En este proyecto se cuenta con un conjunto de datos de Instacart Market Basket Analysis, que se encuentra en varios archivos CSV. 
-
-
-<small> La información que contiene los archivos CSV es la siguiente:
-
-• **orders.csv** : Contiene información de los pedidos realizados por los usuarios.
-Cada fila representa un pedido y contiene la siguiente información:
-- **order_id** : ID del pedido.
-- **user_id** : ID del usuario que realizó el pedido.
-- **order_number**: Número de pedido para cada usuario (1 = primer pedido, 2 =
-segundo pedido, etc.).
-- **order_dow** : Día de la semana en que se realizó el pedido.
-- **order_hour_of_day** : Hora del día en que se realizó el pedido.
-- **days_since_prior_order** : Días transcurridos desde el último pedido del
-usuario.
-
-• **order_products__prior.csv**: Contiene información de los productos comprados en
-cada pedido. Cada fila representa un producto en un pedido y contiene la
-siguiente información:
-- **order_id** : ID del pedido.
-- **product_id** : ID del producto comprado.
-- **add_to_cart_order** : Orden en el que se agregó el producto al carrito en el
-momento del pedido.
-- **reordered** : Indica si el producto ha sido ordenado por el usuario
-anteriormente.    
-
-• **products.csv** : Contiene información de los productos vendidos en la tienda. Cada
-fila representa un producto y contiene la siguiente información:
-- **product_id** : ID del producto.
-- **product_name** : Nombre del producto.
-- **aisle_id**: ID del pasillo donde se encuentra el producto.
-- **department_id** : ID del departamento al que pertenece el producto.
-
-• **aisles.csv** : Contiene información de los pasillos de la tienda. Cada fila representa
-un pasillo y contiene la siguiente información:
-- **aisle_id** : ID del pasillo.
-- **aisle** : Nombre del pasillo.
-
-• **departments.csv** : Contiene información de los departamentos de la tienda. Cada
-fila representa un departamento y contiene la siguiente información:
-- **department_id** : ID del departamento.
-- **department** : Nombre del departamento.    
+• **departments.csv** : Contains information about the store's departments. Every
+Row represents a department and contains the following information:
+- **department_id** : Department ID.
+- **department** : Name of the department.    
 
 </small>
 
-Diagrama Entidad Relacion
-<img src="/img/Proyecto_Final.png" width="600" height="400">
+Entity Relationship Diagram
+<p>
+<img src="img/Proyecto_Final.png" width="600" height="400">
+</p>
+
+# 3. Exploratory analysis
+
+In exploratory analysis files are analyzed with the information provided in the previous section, the purpose is to analyze and investigate the datasets, summarize their main characteristics, detect anomalies, identify relationships, eliminate irrelevant variables, impute missing values, and clean up product names.
+
+The tasks to be carried out are defined: 
+
+1. Perform exploratory analysis of the data to understand the distribution of orders, the number of products per order, and the frequency of purchases per day and hour. 
+2. Identify the best-selling products in the store and visualize the results using a bar graph. 
+3. Identify the most purchased products in each department and visualize the results using a bar graph. 
+4. Identify the products that are most purchased together, i.e. those that appear in the same orders most frequently, and visualize the results using a network graph. 
+
+Based on the tasks defined and the exploratory analysis, the following actions will be carried out:
+
+- **Do not use the isolated table**.
+
+- Remove the following attributes:
+- - **eval_set** in the **orders** table: This attribute indicates which dataset (training, test, etc.) each order belongs to, but is not used in this analysis.
+- - **days_since_prior_order** in the **orders** table: This attribute indicates how many days have passed since the last order of the same user, but is not used in this analysis.
+- - **aisolate** from the **products** table: This attribute indicates the aisle in which each product is located, but is not used in this analysis.
+- - **reordered** in the **order_products** table: This attribute indicates whether the product was reordered by the same user, but is not used in this analysis.
+
+- Impute missing values and clean up product names.
+
+- Blank spaces after the product name will be removed.
+
+- The product name is going to be converted to lowercase.
+
+# 4. Development
+
+For the development, each task will be worked on as follows:
+1. Pre-process the data by removing irrelevant variables, imputing missing values, and cleaning up product names.
+2. Perform an exploratory analysis of the data to understand the distribution of orders.
+- Display of the number of products per order
+- Display frequency of purchases per day
+- Display frequency of purchases per hour.
+3. Identify the best-selling products in the store and visualize the results using a bar chart.
+4. Identify the most purchased products in each department and visualize the results using a bar graph.
+5. Identify the products that are most purchased together, i.e. those that appear in the same orders most frequently, and visualize the results using a network graph.
+
+## 4.1. Pre-process data by removing irrelevant variables, imputing missing values, and clearing product names.
+
+- Install and Import Modules
+
+```python
+!pip install pandas
+!pip install matplotlib
+!pip install networkx
+#Importar módulos
+#Modulo para procesamiento de datos
+import pandas as pd
+#Modulo para visualizacion de datos
+import matplotlib.pyplot as plt
+#Modulo para visualizar los resultados utilizando un gráfico de red
+import networkx as nx
+from itertools import combinations
+from collections import Counter
+
+```
+
+- Load the data
+
+```python
+df_department = pd.read_csv('data/departments.csv')
+df_orders = pd.read_csv('data/orders.csv')
+df_products = pd.read_csv('data/products.csv')
+df_order_products = pd.read_csv('data/order_products__prior.csv')
+
+```
+
+- Remove irrelevant variables
+
+```python
+df_department = pd.read_csv('data/departments.csv')
+df_orders = pd.read_csv('data/orders.csv')
+df_products = pd.read_csv('data/products.csv')
+df_order_products = pd.read_csv('data/order_products__prior.csv')
+
+```
+- Merge the tables
+
+```python
+data = df_orders.merge(df_order_products, on="order_id").merge(df_products, on="product_id").merge(df_department, on="department_id")
+
+```
+
+- Input missing values and clear product names.
+- Check if there are null or missing values
+- Check for duplicate or misspelled product names
+- White spaces will be removed after the product name
+- The product name will be converted to lowercase
+- Correct product names (if necessary)
+- Check for duplicate or misspelled product names
+
+```python
+valor_imputar = data.isnull().sum()
+print(valor_imputar)
+
+valor_duplicados = data['product_name'].value_counts()
+print(valor_duplicados)
+
+data['product_name'] = data['product_name'].str.strip()  
+data['product_name'] = data['product_name'].str.lower() 
+
+valor_duplicados = data['product_name'].value_counts()
+print(valor_duplicados)
+
+```
+
+---
+
+# 4.1 DAE files are executed for Python tests with Pandas
+
+## 4.2 Perform an exploratory analysis of the data to understand the distribution of orders.
+- Viewing quantity of products per order.
+- Viewing purchase frequency per day.
+- Viewing purchase frequency by hour.
+
+---
+
+---
+### 4.2.1 Display quantity of products per order
+
+Number of products per order
+
+```python
+prod_x_order = data.groupby('order_id')['product_id'].count()
+```
+
+Graph of the quantity of products per order
+
+```python
+plt.figure(figsize=(10.6))
+plt.hist(prod_x_orden, bins=30, edgecolor='black', color='skyblue')
+plt.title('Distribution of quantity of products per order')
+plt.xlabel('Number of products')
+plt.ylabel('Number of orders')
+plt.show()
+```
+
+---
+
+---
+
+### 4.2.2 Viewing purchase frequency per day.
+Convert the numeric data type to a string to identify days by name 
+
+```python
+dow_dict = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+}
+
+#Use the map method to replace numbers with day names
+data['order_dow'] = data['order_dow'].map(dow_dict)
+
+#Order chart by day of the week
+#Order chart by day of the week
+order_x_dia = data['order_dow'].value_counts().loc[dow_dict.values()]
+order_x_dia.plot.bar(figsize=(10.6), edgecolor='black', color='skyblue')
+plt.title('Frequency of purchases per day of the week')
+plt.xlabel('Day of the week')
+plt.ylabel('Number of orders')
+plt.show()
+
+```
+---
+
+---
+
+### 4.2.3 Viewing purchase frequency by hour.
+
+Convert the numeric data type to a string to identify times in am or pm. 
+
+```python
+# Orders by time of day
+dow_dict = {
+    0: '12:00 am',
+    1: '1:00 am',
+    2: '2:00 am',
+    3: '3:00 am',
+    4: '4:00 am',
+    5: '5:00 am',
+    6: '6:00 am',
+    7: '7:00 am',
+    8: '8:00 am',
+    9: '9:00 am',
+    10: '10:00 am',
+    11: '11:00 am',
+    12: '12:00 pm',
+    13: '1:00 pm',
+    14: '2:00 pm',
+    15: '3:00 pm',
+    16: '4:00 pm',
+    17: '5:00 pm',
+    18: '6:00 pm',
+    19: '7:00 pm',
+    20: '8:00 pm',
+    21: '9:00 pm',
+    22: '10:00 pm',
+    23: '11:00 pm'
+}
+
+# Use the map method to replace numbers with day names
+data['order_hour_of_day'] = data['order_hour_of_day'].map(dow_dict)
+order_x_hour = data['order_hour_of_day'].value_counts().loc[dow_dict.values()]
+
+# Order chart by time of day
+order_x_hour.plot.bar(figsize=(10.6), edgecolor='black', color='skyblue')
+plt.title('Frequency of purchases per hour of the day')
+plt.xlabel('Time of day')
+plt.ylabel('Number of orders')
+plt.xticks(range(24))
+plt.show()
+
+```
+
+---
+## 4.3. Identify the best-selling products in the store and view the results using a bar graph.
+
+```python
+#Get the relationship between product number and product name
+prod_name = data[['product_id', 'product_name']]
+#Count the quantity of each product sold
+cant_prod = nombre_prod['product_name'].value_counts()
+#Get the names of the 5 best-selling products
+top_prod = cant_prod.head(5)
 
 
-# 4. Análisis exploratorio
+# Chart of best-selling products
+top_prod.plot(kind='barh', edgecolor='black', color='skyblue')
+# Add tags and title
+plt.xlabel('Number of times sold')
+plt.ylabel('Product name')
+plt.title('The 5 best-selling products')
+plt.gca().invert_yaxis()  
+# Reverse the y-axis so that the best-selling product is at the top
+plt.show()
 
-En el análisis exploratorio se analizan los archivos con la información proporcionada en la sección anterior, el propósito es analizar e investigar los conjuntos de datos, resumir sus características principales, detectar anomalías, identificar relaciones, eliminar variables irrelevantes, imputar valores faltantes y limpiar los nombres de los productos.
+```
 
-Se definen las tareas a realizar: 
+---
 
-1. Realizar un análisis exploratorio de los datos para entender la distribución de los pedidos, la cantidad de productos por pedido y la frecuencia de compras por día y hora. 
-2. Identificar los productos más vendidos en la tienda y visualizar los resultados utilizando un gráfico de barras. 
-3. Identificar los productos más comprados en cada departamento y visualizar los resultados utilizando un gráfico de barras. 
-4. Identificar los productos que más se compran juntos, es decir, aquellos que aparecen en los mismos pedidos con mayor frecuencia, y visualizar los resultados utilizando un gráfico de red. 
+---
 
+## 4.4. Identify the most purchased products in each department and view the results using a bar graph.
 
-En base a las tareas que se define y al analisis exploratorio se realizaran las siguientes acciones:
-
-- **No ocupar la tabla aisles**.
-
-- Eliminar los siguientes atributos:
-- - **eval_set** de la tabla **orders**: Este atributo indica a cuál conjunto de datos (entrenamiento, prueba, etc.) pertenece cada pedido, pero no se usa en este análisis.
-- - **days_since_prior_order** de la tabla **orders**: Este atributo indica cuántos días han pasado desde el último pedido del mismo usuario, pero no se usa en este análisis.
-- - **aisle** de la tabla **products**: Este atributo indica el pasillo en el que se encuentra cada producto, pero no se usa en este análisis.
-- - **reordered** de la tabla **order_products**: Este atributo indica si el producto fue reordenado por el mismo usuario, pero no se usa en este análisis.
-
-- Imputar valores faltantes y limpiar los nombres de los productos.
-
-- Se van a eliminar los espacios en blanco despues del nombre del producto.
-
-- Se van a convertir a minusculas el nombre del producto.
+```python
+# Best-selling product by department
+top_prod_x_dep = data.groupby('department')['product_name'].value_counts().groupby(level=0).nlargest(1)
+# Reset the first index level
+top_prod_x_dep = top_prod_x_dep.reset_index(level=0, drop=True)
 
 
-# 5. Desarrollo
 
-Para el desarrollo se va trabajar cada tarea de la siguiente forma:
-1. Preprocesar los datos eliminando variables irrelevantes, imputando valores faltantes y limpiando los nombres de los productos.
-2. Realizar un análisis exploratorio de los datos para entender la distribución de los pedidos.
-- Visualización cantidad de productos por pedido
-- Visualización frecuencia de compras por día
-- Visualización frecuencia de compras por hora.
-3. Identificar los productos más vendidos en la tienda y visualizar los resultados utilizando un gráfico de barras.
-4. Identificar los productos más comprados en cada departamento y visualizar los resultados utilizando un gráfico de barras.
-5. Identificar los productos que más se compran juntos, es decir, aquellos que aparecen en los mismos pedidos con mayor frecuencia, y visualizar los resultados utilizando un gráfico de red.
+# Create the bar chart
+plt.figure(figsize=(10,10))
+top_prod_x_dep.plot(kind='barh', edgecolor='black', color='skyblue')
+# Configure the axes and title
+plt.title('Most purchased product by department')
+plt.xlabel('Number of orders')
+plt.ylabel('Department /Order')
+# Reverse the y axis so that the department with the best-selling product is at the top
+plt.gca().invert_yaxis()
+plt.show()
+
+```
+
+---
+
+---
+
+## 4.5. Identify the products that are purchased the most together, that is, those that appear in the same orders most frequently, and visualize the results using a network graph.
+
+```python
+#Group data by 'order_id' and get the list of products in each order
+order_prod = data.groupby('order_id')['product_name'].apply(list)
+
+#Generate all possible product combinations in each order and count the frequency of each combination
+comb_prod = Counter()
+
+for products in order_prod:
+    comb_prod.update(combinations(products, 2))
+
+# Get the 5 most common product combinations
+top_comb_prod = comb_prod.most_common(5)
 
 
-## Se ejecutan los archivos ADE para las pruebas de Python con Pandas
+# We create a graph
+G = nx.Graph()
 
-## Se ejecutan los archivos ADESpark para las pruebas de Spark
+# We add nodes (products) and edges (connections between products) to the graph
+for (p1, p2), count in top_comb_prod:
+    G.add_node(p1)
+    G.add_node(p2)
+    G.add_edge(p1, p2, weight=count)
+
+# We draw the graph
+plt.figure(figsize=(10,10))
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=2000, font_size=10)
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title('The 5 most purchased products together')
+plt.show()
 
 
-# 6. Resultados
 
-Para las solicitudes de análisis en Pandas implemente el archivo ADE.ipynb.
-Para las solicitudes de análisis en Spark implemente el archivo ADESpark.ipynb en:
+```
+---
+
+---
+## 4.6. Use Spark to perform parallel data analysis and obtain the frequency of purchases by day and hour. 
+
+```python
+#Installation of modules
+!pip install pyspark
+
+#Import modules
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, count
+
+# Create a Spark session
+spark = SparkSession.builder.appName("Project_Evaluation").getOrCreate()
+
+# Upload data to Spark DataFrames
+df_department = spark.read.csv('data/departments.csv', header=True, inferSchema=True)
+df_order_products = spark.read.csv('data/order_products__prior.csv', header=True, inferSchema=True)
+df_orders = spark.read.csv('data/orders.csv', header=True, inferSchema=True)
+df_products = spark.read.csv('data/products.csv', header=True, inferSchema=True)
+
+#Delete attributes
+df_orders = df_orders.drop('eval_set')
+df_orders = df_orders.drop('days_since_prior_order')
+df_products = df_products.drop('aisle_id')
+df_order_products = df_order_products.drop('reordered')
 
 
-### **Evaluacion eficencia Python con Pandas.**
-#### **Se realizaron pruebas en:**
+#Unite the data
+data = df_orders.join(df_order_products, "order_id").join(df_products, "product_id").join(df_department, "department_id")
 
-| Sistema Operativo | Tiempo de ejecucion | Uso de CPU    | Uso de memoria |
+
+# Calculate the frequency of purchases per day
+order_x_dia_sp = data.groupBy('order_dow').count().orderBy('count', ascending=False)
+order_x_dia_pd = order_x_dia_sp.toPands()
+order_x_dia_pd.set_index('order_dow', inplace=True)
+
+
+# View the frequency of purchases per day
+order_x_dia_pd.plot(kind='bar', title='Frequency of purchases per day of the week', edgecolor='black', color='skyblue')
+plt.xlabel('Day of the week')
+plt.ylabel('Number of orders')
+plt.show()
+
+# Calculate the frequency of purchases per hour
+order_x_hour_sp = data.groupBy('order_hour_of_day').count().orderBy('count', ascending=False)
+order_x_hour_pd = order_x_hour_sp.toPands()
+order_x_hour_pd.set_index('order_hour_of_day', inplace=True)
+
+# View the frequency of purchases per hour
+order_x_hour_pd.plot(kind='bar', edgecolor='black', color='skyblue')
+plt.title('Frequency of purchases per hour of the day')
+plt.xlabel('Time of day')
+plt.ylabel('Number of orders')
+plt.xticks(range(24))
+plt.show()
+
+```
+
+**I tried to implement day and time dictionaries like in pandas, but I was not successful**
+
+---
+
+
+---
+
+## ADESpark files are executed for Spark tests
+
+# 5. Results
+
+For analysis requests in Pandas implement the ADE.ipynb file.
+For scan requests in Spark, deploy the ADESpark.ipynb file to:
+
+### **Python efficiency evaluation with Pandas.**
+#### **Tests were carried out on:**
+
+| Operating System | Runtime | CPU Usage | Memory Usage |
 |-------------------|---------------------|---------------|----------------|
-| Windows 10        | 112.2 segundos      | 26.8%         | 40.4%          |
-| macOS Catalina    | 153.05 segundos     | 19.8%         | 37.3%          |
-| Red Hat 9         | Error Kernel        | Error Kernel  | Error Kernel   |
+| Windows 10 | 112.2 seconds | 26.8% | 40.4% |
+| macOS Catalina | 153.05 seconds | 19.8% | 37.3% |
+| Red Hat 9 | Kernel Error | Kernel Error | Kernel Error |
 
+<li><span style="color:red">Red Hat Python output with Pandas stopped.</span></li>
 
-<li><span style="color:red">El resultado de Red Hat de Python con Pandas se detuvo.</span></li>
+### **Spark efficiency evaluation.**
+#### **Tests were carried out on:**
 
-
-### **Evaluacion eficencia Spark.**
-#### **Se realizaron pruebas en:**
-
-| Sistema Operativo | Tiempo de ejecucion | Uso de CPU    | Uso de memoria |
+| Operating System | Runtime | CPU Usage | Memory Usage |
 |-------------------|---------------------|---------------|----------------|
-| Windows 10        | 86.69 segundos      | 75.7%         | 47.8%          |
-| macOS Catalina    | 181.68 segundos     | 27.8%         | 51.9%          |
-| Red Hat 9         | Aprox 120 segundos  | Aprox 36.66%  | Aprox 31%      |
+| Windows 10 | 86.69 seconds | 75.7% | 47.8% |
+| macOS Catalina | 181.68 seconds | 27.8% | 51.9% |
+| Red Hat 9 | Approx 120 seconds | Approx 36.66% | Approx 31% |
+
+<li><span style="color:red">Red Hat's result with Spark was approximate.</span></li>
+<li><span style="color:red">I only generate a graph and the service stopped.</span></li>
+<li><span style="color:red">Possibly the error with Red Hat 9 was due to its virtualization and restriction on the size of the virtual hard disk with 31 GB of space.</span></li>
 
 
-<li><span style="color:red">El resultado de Red Hat con Spark fue aproximado.</span></li>
-<li><span style="color:red">Solo genero una grafica y se paro el servicio.</span></li>
-<li><span style="color:red">Posiblemente el error con Red Hat 9 se debio a su virtualización y restriccion en el tamaño del disco duro virtual con tenia 31 GB de espacio.</span></li>
-
-
-
-### **Detalles tecnicos y Demostración de ejecución:**
+### **Technical Details and Execution Demonstration:**
 
 ### - Windows 10
-- - Procesador i5 de 9th Generacion 2.30 GHz con 8 nucleos
-- - Memoria RAM 32 GB
-- - Disco Duro NVME de 1TB
+- - 9th Gen 2.30 GHz i5 processor with 8 cores
+- - RAM memory 32 GB
+- - 1TB NVME Hard Drive
 
-#### Python con pandas Win 10
-<img src="/img/rp_win.png" width="600" height="400">
+#### Python with Win 10 pandas
+<img src="img/rp_win.png" width="600" height="400">
 
 #### Spark Win 10
-<img src="/img/rs_win.png" width="600" height="400">
-
+<img src="img/rs_win.png" width="600" height="400">
 
 ### - Osx Catalina
-- - Procesador i5 de 5th Generacion 1.7 GHz con 2 nucleos
-- - Memoria RAM 16 GB
-- - Disco Duro SSD de 512GB
+- - 5th Gen 1.7 GHz i5 processor with 2 cores
+- - RAM 16 GB
+- - 512GB SSD Hard Drive
 
-#### Python con pandas Osx Catalina
-<img src="/img/rp_osx.png" width="600" height="400">
+#### Python with Osx Catalina pandas
+<img src="img/rp_osx.png" width="600" height="400">
 
-#### Spark Osx Catalina
-<img src="/img/rs_osx.png" width="600" height="400">
+#### Osx Catalina Spark
+<img src="img/rs_osx.png" width="600" height="400">
 
+### - Red Hat 9 (Virtual Machine in Virtual Box)
+- - 9th Gen 2.30 GHz i5 processor with 4 cores
+- - RAM 8 GB
+- - 31GB NVME Hard Drive
 
-### - Red Hat 9 (Maquina Virtual en Virtual Box)
-- - Procesador i5 de 9th Generacion 2.30 GHz con 4 nucleos
-- - Memoria RAM 8 GB
-- - Disco Duro NVME de 31GB
-
-#### Error en Python con pandas Red Hat 9
-<img src="/img/rp_redh.png" width="600" height="400"> 
+#### Bug in Python with Red Hat 9 pandas
+<img src="img/rp_redh.png" width="600" height="400"> 
 
 #### Spark Red Hat 9
-<img src="/img/rs_redh.png" width="600" height="400">
+<img src="img/rs_redh.png" width="600" height="400">
 
-#### Error en Spark Red Hat 9
-<img src="/img/rs_redh-error.png" width="600" height="400">
-
-
+#### Error in Spark Red Hat 9
+<img src="img/rs_redh-error.png" width="600" height="400">
 
 
-# 7. Conclusión
 
-El uso e implementación de técnicas de Big Data para el análisis de datos aporta al conocimiento teórico y técnico una comprensión del comportamiento de la información y el potencial que tiene para poder ayudar a la solución de problemas reales que tiene la sociedad y/o en la toma de decisiones dentro de empresas públicas y privadas, por lo que la información resulta ser invaluable para las empresas de cualquier sector productivo.
+# 6. Conclusion
 
-El desarrollo del análisis de datos de la información proporcionada, se tuvo en primer parte una visión global de los datos y la relación que tienen entre estos, lo que llevó a establecer el tipo de atributos que los relacionaban y el giro de servicios y/o productos que la empresa utiliza esta información. Así se tiene una comprensión más a detalle de las tareas que se van a desarrollar y los resultados que se pretenden obtener.
+The use and implementation of Big Data techniques for data analysis provides theoretical and technical knowledge with an understanding of the behavior of information and the potential it has to help solve real problems in society and/or in decision-making within public and private companies.  so the information is invaluable for companies in any productive sector.
 
-En el análisis de datos se establece una tienda de servicios de productos que están separados por departamentos y pasillos, también las órdenes de compra que nos dicen el cliente, la frecuencia y la cantidad de productos por cada orden de compra diaria, así se identifica los productos que se compran juntos, con más frecuencia por día o por hora y por departamento, con el resultado se puede ayudar a la empresas a desarrollar estrategias de venta cruzada más efectivas y a optimizar el diseño de sus tiendas, tanto físicas como en línea. Al mismo tiempo, conocer la frecuencia de las compras por día y hora puede ayudar a mejorar la gestión de inventario y la programación del personal, lo que a su vez puede conducir a una mayor eficiencia y ahorro de costos.
+The development of the data analysis of the information provided, first of all had a global vision of the data and the relationship they have between them, which led to establish the type of attributes that related them and the line of services and/or products that the company uses this information. This gives you a more detailed understanding of the tasks that are going to be carried out and the results that are intended to be obtained.
 
-En la parte técnica del análisis de datos se utilizó las herramientas de Python con Pandas y Spark, ambas son herramientas para el manejo y análisis de datos, pero se utilizan de manera diferente dependiendo del tamaño de los datos y el entorno de procesamiento.
+In the data analysis, a store of product services is established that are separated by departments and aisles, also the purchase orders that the customer tells us, the frequency and quantity of products for each daily purchase order, thus identifying the products that are purchased together, more frequently per day or per hour and by department,  The result can help companies develop more effective cross-selling strategies and optimize the design of their stores, both physical and online. At the same time, knowing the frequency of purchases by day and hour can help improve inventory management and staff scheduling, which in turn can lead to greater efficiency and cost savings.
 
-Por lo tanto, en la implementación de estas técnicas en este problema el uso de Python con Pandas tuvo como ventajas:
+In the technical part of the data analysis, Python tools were used with Pandas and Spark, both are tools for data management and analysis, but they are used differently depending on the size of the data and the processing environment.
 
-- Manipulación de datos sencilla.
+Therefore, in the implementation of these techniques in this problem, the use of Python with Pandas had the following advantages:
 
-- Análisis exploratorio de datos a pequeña y mediana escala
+- Easy data handling.
 
-- Poder trabajar en un solo equipo de cómputo con requisitos técnicos mínimos.
+- Exploratory analysis of small and medium-scale data
 
-Y como desventajas:
+- Be able to work on a single computer with minimal technical requirements.
 
-- La limitante de analizar conjuntos de datos masivos debido a las restricciones de memoria del equipo.
+And as disadvantages:
 
-Por otra parte, Spark está diseñado para ser rápido y manejar grandes cantidades de datos distribuidos a través de nodos en un clúster, por lo que, lo hace más adecuado para conjuntos de datos muy grandes que no caben en la memoria del equipo y que se puede implementar en una infraestructura de cloud computing (Amazon, Azure, Google Cloud, etc.).
+- The limitation of analyzing massive data sets due to the computer's memory constraints.
 
-En la implementación de Spark en este problema tuvo ventajas:
+On the other hand, Spark is designed to be fast and handle large amounts of data distributed across nodes in a cluster, making it more suitable for very large data sets that do not fit in the computer's memory and that can be deployed in a cloud computing infrastructure (Amazon,  Azure, Google Cloud, etc.).
 
-- El tiempo de carga de datos fue más rápido.
+In implementing Spark in this problem had advantages:
 
-- El análisis exploratorio mejora el rendimiento del procesador.
+- Data load time was faster.
 
-- El poder aumentar la cantidad de información para realmente visualizar su potencial.
+- Exploratory analysis improves processor performance.
 
-Y como desventajas:
+- Being able to increase the amount of information to really visualize its potential.
 
-- Es complicado en su codificación, si no se tienen conocimientos previos del lenguaje de programación.
+And as disadvantages:
 
-- La manipulación de datos es más compleja retomando lo dicho en el punto anterior.
+- It is complicated in its coding, if you do not have previous knowledge of the programming language.
 
-- No se exploran métodos de ploteo o graficación.
+- Data manipulation is more complex, going back to what was said in the previous point.
 
-- No se visualiza el rendimiento en recursos ya que todo se ejecutó en un solo equipo de cómputo.
+- No plotting or graphing methods are explored.
 
-En conclusión, el uso de Big Data y técnicas de análisis de datos (Python con Pandas y Spark) en este proyecto, ayuda a entender y clarificar el poder aplicativo como desarrollador de software en lo que es el proceso de análisis de información, y como una herramienta para la dirección de empresas (públicas, privadas, investigación, fundaciones, etc.,) en la toma de decisiones. Asi que el Big Data se posiciona como una de las áreas del conocimiento con más aplicación en el presente y como una base científica para futuras áreas de la inteligencia artificial como el Machine Learning.
-Y en una ventaja para mi proyecto de investigación, ya que será la herramienta que me ayude a plantear y validar mi pregunta de investigación e hipótesis en mi proyecto de Doctorado en Tecnologías de la Información.
+- Resource performance is not displayed since everything was executed on a single computer.
 
 
-# 8. Bibliográfia
 
-- Documentación oficial de Python: https://docs.python.org/3/
-- Documentación oficial de Pandas: https://pandas.pydata.org/docs/
-- Documentación oficial de Matplotlib: https://matplotlib.org/stable/contents.html
-- Documentación oficial de Apache Spark: https://spark.apache.org/docs/latest/
-- Analisis Exploratorio de Datos https://www.aprendemachinelearning.com/analisis-exploratorio-de-datos-pandas-python/
-- Conceptos en Python https://www.geeksforgeeks.org
-- Dudas https://stackoverflow.com/questions/tagged/pandas+python
-- Analisis de datos https://ocw.uc3m.es/course/view.php?id=230
-- Diccionarios de datos en data frame https://github.com/nsheikh23/COVID_StockMarket_Analysis/blob/master/52_Week.ipynb
-- Procesamiento de data frames en pandas https://barcelonageeks.com/eliminar-una-o-varias-columnas-de-pyspark-dataframe/
+# 7. References
+
+- Official Python documentation: https://docs.python.org/3/
+- Official Pandas documentation: https://pandas.pydata.org/docs/
+- Matplotlib Official Documentation: https://matplotlib.org/stable/contents.html
+- Official Apache Spark documentation: https://spark.apache.org/docs/latest/
+- Exploratory Data Analysis https://www.aprendemachinelearning.com/analisis-exploratorio-de-datos-pandas-python/
+- Concepts in Python https://www.geeksforgeeks.org
+- Doubts https://stackoverflow.com/questions/tagged/pandas+python
+- Data analysis https://ocw.uc3m.es/course/view.php?id=230
+- Data Dictionaries in Data Frame https://github.com/nsheikh23/COVID_StockMarket_Analysis/blob/master/52_Week.ipynb
+- Data frame processing in pandas https://barcelonageeks.com/eliminar-una-o-varias-columnas-de-pyspark-dataframe/
 - Data Clean https://github.com/mramshaw/Data-Cleaning
-- Ploteo de datos https://github.com/tomimester/python-histogram/blob/master/plot-histogram-python-pandas.ipynb
-- Creación de grafos con networkx https://ernestocrespo13.wordpress.com/2012/11/25/creacion-de-grafos-con-networkx-parte-1/
+- Data plotting https://github.com/tomimester/python-histogram/blob/master/plot-histogram-python-pandas.ipynb
+- Creating graphs with networkx https://ernestocrespo13.wordpress.com/2012/11/25/creacion-de-grafos-con-networkx-parte-1/
 - Data Analysis Techniques with PySpark https://github.com/sedaatalay/Sample-Data-Analysis-Techniques-with-PySpark
+
